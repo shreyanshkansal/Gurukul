@@ -39,9 +39,11 @@ GO2_DEPTH_CAMERA_CFG = RayCasterCameraCfg(
     prim_path="{ENV_REGEX_NS}/Robot/base",
     data_types=["distance_to_camera"],
     offset=RayCasterCameraCfg.OffsetCfg(
-        # pos=(0.33, 0.0, 0.08),
-        pos=(0.048 + 0.32715, 0.0 - 0.00003, 0.025 + 0.04297), # Eyeballed from the real robot and added to the URDF base-to-camera mount offset
-        rot=_quat_from_euler_xyz_deg(180.0, 70.0, -90.0), # Second value means 20 degrees downward facing from horizontal axis, TUNE THIS! 
+        # pos=(0.33, 0.0, 0.08), #old original values
+        # pos=(0.048 + 0.32715, 0.0 - 0.00003, 0.025 + 0.04297), # Eyeballed from the real robot and added to the URDF base-to-camera mount offset
+        pos = (0.34, 0.0, 0.06), # MGDP values
+        # rot=_quat_from_euler_xyz_deg(180.0, 70.0, -90.0), # Second value means 20 degrees downward facing from horizontal axis, TUNE THIS! 
+        rot=_quat_from_euler_xyz_deg(180.0, 60.0, -90.0), # MGDP values
         convention="ros",
     ),
     depth_clipping_behavior="max",
@@ -124,15 +126,25 @@ class UnitreeGo2RoughDepthDistillEnvCfg(UnitreeGo2RoughEnvCfg):
             mode="reset",
             params={
                 "sensor_cfg": SceneEntityCfg("depth_camera"),
-                "position_range": {
-                    "x": (-0.015, 0.015),
-                    "y": (-0.01, 0.01),
-                    "z": (-0.01, 0.01),
+                # "position_range": {
+                #     "x": (-0.015, 0.015),
+                #     "y": (-0.01, 0.01),
+                #     "z": (-0.01, 0.01),
+                # },
+                "position_range": { # MGDP values 
+                    "x": (-0.02, 0.02),
+                    "y": (-0.02, 0.02),
+                    "z": (-0.02, 0.02),
                 },
-                "rotation_range_deg": {
-                    "roll": (-2.0, 2.0),
-                    "pitch": (-3.0, 3.0),
-                    "yaw": (-2.0, 2.0),
+                # "rotation_range_deg": {
+                #     "roll": (-2.0, 2.0),
+                #     "pitch": (-3.0, 3.0),
+                #     "yaw": (-2.0, 2.0),
+                # },
+                "rotation_range_deg": { # MGDP values
+                    "roll": (-0.0, 0.0),
+                    "pitch": (-2.0, 2.0),
+                    "yaw": (-0.0, 0.0),
                 },
             },
         )
