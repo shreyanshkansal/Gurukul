@@ -17,9 +17,11 @@ _ROBOT_DIR = (_BASE_DIR / ".." / "unitree_robots" / ROBOT).resolve()
 _SCENE_ALIASES = {
     "flat": "scene.xml",
     "default": "scene.xml",
+    "standing": "scene.xml",
     "rough": "scene_terrain.xml",
     "terrain": "scene_terrain.xml",
     "stairs": "scene_stairs.xml",
+    "sitting": "scene_sitting.xml",
 }
 _DEFAULT_SCENE = "flat" if ROBOT == "go2" else "scene_flat.xml"
 if not (_ROBOT_DIR / _DEFAULT_SCENE).is_file() and (_ROBOT_DIR / "scene.xml").is_file():
